@@ -11,7 +11,7 @@
  * @returns {void}
  */
 export function createQuickLogin({ apiKey, onQuickLoginSuccess }) {
-  const CREATOR_DOMAIN = process.env.CREATOR_DOMAIN;
+  const CREATOR_URL = process.env.CREATOR_URL;
   const iframeContainer = document.querySelector("[data-quicklogin]");
 
   if (!iframeContainer || !apiKey) {
@@ -19,7 +19,7 @@ export function createQuickLogin({ apiKey, onQuickLoginSuccess }) {
   }
 
   const quickLoginIframe = document.createElement("iframe");
-  quickLoginIframe.src = `${CREATOR_DOMAIN}/quickLogin?apiKey=${apiKey}`;
+  quickLoginIframe.src = `${CREATOR_URL}/quickLogin?apiKey=${apiKey}`;
   quickLoginIframe.id = "quicklogin-iframe";
   quickLoginIframe.style.border = "none";
   quickLoginIframe.style.width = "255px";
@@ -28,7 +28,7 @@ export function createQuickLogin({ apiKey, onQuickLoginSuccess }) {
   iframeContainer.appendChild(quickLoginIframe);
 
   window.addEventListener("message", (event) => {
-    if (event.origin !== CREATOR_DOMAIN) return;
+    if (event.origin !== CREATOR_URL) return;
 
     switch (event.data.type) {
       case "quicklogin-challenge-generated":
