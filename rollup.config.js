@@ -4,7 +4,7 @@ import terser from "@rollup/plugin-terser";
 export default {
   input: "src/quicklogin.js",
   output: {
-    format: "cjs",
+    format: "es",
   },
   plugins: [
     replace({
