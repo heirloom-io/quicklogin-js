@@ -18,13 +18,13 @@ For the SDK to know where to embed the QuickLogin iFrame, you need to setup a `d
 Next, let's link the SDK:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/heirloom-io/quicklogin-js@0.1.0/dist/quicklogin.js">
+<script src="https://cdn.jsdelivr.net/gh/heirloom-io/quicklogin-js@0.1.1/dist/quicklogin.js">
 ```
 
 Then, we can create an SDK instance using the `createQuickLogin` function. This function takes in an object where you pass in your API key and a callback function that will be called upon a successful QuickLogin.
 
 ```js
-createQuickLogin({
+QuickLogin.createQuickLogin({
   apiKey: "YOUR_API_KEY"
   onQuickLoginSuccess: (authToken) => console.log(authToken)
 })

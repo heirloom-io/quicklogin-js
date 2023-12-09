@@ -4,8 +4,10 @@ import terser from "@rollup/plugin-terser";
 export default {
   input: "src/quicklogin.js",
   output: {
-    format: "es",
+    format: "iife",
+    name: "QuickLogin",
   },
+
   plugins: [
     replace({
       "process.env.CREATOR_URL": JSON.stringify(process.env.CREATOR_URL),
