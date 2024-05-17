@@ -6,20 +6,25 @@
 /**
  * Create a QuickLogin iFrame
  * @param {Object} options
- * @param {string} options.apiKey - The API key associated with q QuickLogin Lock
+ * @param {string} options.apiKey - The API key to use
+ * @param {lockId} options.lockId - The lock ID to use
  * @param {OnQuickLoginSuccess} options.onQuickLoginSuccess - Callback function to be called when a QuickLogin succeeds
  * @returns {void}
  */
-export function createQuickLogin({ apiKey, onQuickLoginSuccess }) {
+export function createQuickLogin({ apiKey, lockId, onQuickLoginSuccess }) {
   const CREATOR_URL = process.env.CREATOR_URL;
   const iframeContainer = document.querySelector("[data-quicklogin]");
 
-  if (!iframeContainer || !apiKey) {
-    throw new Error(`QuickLogin SDK: iFrame target and/or apiKey not found`);
+  if (!iframeContainer) {
+    throw new Error(`QuickLogin SDK: iFrame target not found`);
+  }
+
+  if (!apiKey || !lockId) {
+    throw new Error(`QuickLogin SDK: apiKey and/or lockId not found`);
   }
 
   const quickLoginIframe = document.createElement("iframe");
-  quickLoginIframe.src = `${CREATOR_URL}/quickLogin?apiKey=${apiKey}`;
+  quickLoginIframe.src = `${CREATOR_URL}/quickLogin?apiKey=${apiKey}&lockId=${lockId}`;
   quickLoginIframe.id = "quicklogin-iframe";
   quickLoginIframe.style.border = "none";
   quickLoginIframe.style.width = "255px";
@@ -32,7 +37,7 @@ export function createQuickLogin({ apiKey, onQuickLoginSuccess }) {
 
     switch (event.data.type) {
       case "quicklogin-challenge-generated":
-        quickLoginIframe.style.height = "358px";
+        quickLoginIframe.style.height = "380px";
         break;
       case "quicklogin-websocket-response":
         onQuickLoginSuccess(event.data.message);

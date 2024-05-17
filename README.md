@@ -21,13 +21,14 @@ Next, let's link the SDK:
 <script src="https://cdn.jsdelivr.net/gh/heirloom-io/quicklogin-js@0.1.1/dist/quicklogin.js">
 ```
 
-Then, we can create an SDK instance using the `createQuickLogin` function. This function takes in an object where you pass in your API key and a callback function that will be called upon a successful QuickLogin.
+Then, we can create an SDK instance using the `createQuickLogin` function. This function takes in an object where you pass in your API key, lock ID, and a callback function that will be called upon a successful QuickLogin.
 
 ```js
 QuickLogin.createQuickLogin({
-  apiKey: "YOUR_API_KEY"
-  onQuickLoginSuccess: (authToken) => console.log(authToken)
-})
+  apiKey: "YOUR_API_KEY",
+  lockId: "YOUR_LOCK_ID",
+  onQuickLoginSuccess: (authToken) => console.log(authToken),
+});
 ```
 
 To see a full example, [click here](/examples/quicklogin.html).
