@@ -52,10 +52,11 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/heirloom-io/quicklogin-js@0.1.1/dist/quicklogin.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/heirloom-io/quicklogin-js@0.2.0/dist/quicklogin.js"></script>
     <script>
       QuickLogin.createQuickLogin({
         apiKey: "YOUR_API_KEY",
+        lockId: "YOUR_LOCK_ID",
         onQuickLoginSuccess: (authToken) => console.log(authToken),
       });
     </script>

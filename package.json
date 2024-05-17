@@ -5,7 +5,7 @@
   "main": "quicklogin.js",
   "scripts": {
     "build": "CREATOR_URL='https://creator.heirloom.io' rollup -c rollup.config.js -o dist/quicklogin.js",
-    "build:stage": "CREATOR_URL='https://creator.staging.heirloom.io' rollup -c rollup.config.js -o dist/quicklogin-staging.js"
+    "build:stage": "CREATOR_URL='https://creator.release.heirloom.io' rollup -c rollup.config.js -o dist/quicklogin-staging.js"
   },
   "author": "",
   "license": "ISC",
