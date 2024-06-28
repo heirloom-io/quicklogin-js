@@ -11,7 +11,7 @@
  * @param {OnQuickLoginSuccess} options.onQuickLoginSuccess - Callback function to be called when a QuickLogin succeeds
  * @returns {void}
  */
-export function createQuickLogin({ apiKey, lockId, onQuickLoginSuccess }) {
+export function createQuickLogin({ apiKey, lockId, legacyUrl = null, onQuickLoginSuccess }) {
   const CREATOR_URL = process.env.CREATOR_URL;
   const iframeContainer = document.querySelector("[data-quicklogin]");
 
@@ -23,8 +23,13 @@ export function createQuickLogin({ apiKey, lockId, onQuickLoginSuccess }) {
     throw new Error(`QuickLogin SDK: apiKey and/or lockId not found`);
   }
 
+  let iframeUrl = `${CREATOR_URL}/quickLogin?apiKey=${apiKey}&lockId=${lockId}`;
+  if (legacyUrl) {
+    iframeUrl += `&legacyUrl=${legacyUrl}`;
+  }
+
   const quickLoginIframe = document.createElement("iframe");
-  quickLoginIframe.src = `${CREATOR_URL}/quickLogin?apiKey=${apiKey}&lockId=${lockId}`;
+  quickLoginIframe.src = iframeUrl;
   quickLoginIframe.id = "quicklogin-iframe";
   quickLoginIframe.style.border = "none";
   quickLoginIframe.style.width = "255px";

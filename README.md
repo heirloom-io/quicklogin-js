@@ -27,6 +27,7 @@ Then, we can create an SDK instance using the `createQuickLogin` function. This 
 QuickLogin.createQuickLogin({
   apiKey: "YOUR_API_KEY",
   lockId: "YOUR_LOCK_ID",
+  legacyUrl: "true", // optional if you need to use old long URLs
   onQuickLoginSuccess: (authToken) => console.log(authToken),
 });
 ```
